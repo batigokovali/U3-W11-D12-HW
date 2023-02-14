@@ -22,8 +22,6 @@ const MainSearch = () => {
     dispatch(getJobsActionAsync(query))
   };
 
-
-
   return (
     <Container>
       <Row>
@@ -37,12 +35,7 @@ const MainSearch = () => {
         </Link>
         <Col xs={12} className="mx-auto">
           <Form onSubmit={handleSubmit}>
-            <Form.Control
-              type="search"
-              value={query}
-              onChange={handleChange}
-              placeholder="type and press Enter"
-            />
+            <Form.Control type="search" value={query} onChange={handleChange} placeholder="type and press Enter" />
           </Form>
         </Col>
         <Col xs={12} className="mx-auto mb-5">

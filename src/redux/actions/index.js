@@ -11,14 +11,12 @@ export const addToFavoritesAction = (data) => {
     }
 }
 
-
 export const removeFromFavoritesAction = (i) => {
     return {
         type: REMOVE_FROM_FAVORITES,
         payload: i,
     }
 }
-
 
 export const getJobsActionAsync = (query) => {
     return async (dispatch, getState) => {

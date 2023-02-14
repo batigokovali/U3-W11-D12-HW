@@ -1,6 +1,8 @@
 export const ADD_TO_FAVORITES = 'ADD_TO_FAVORITES'
 export const REMOVE_FROM_FAVORITES = 'REMOVE_FROM_FAVORITES'
 export const GET_JOBS = 'GET_JOBS'
+export const GET_JOBS_LOADING = 'GET_JOBS_LOADING'
+export const GET_JOBS_ERROR = 'GET_JOBS_ERROR'
 
 export const addToFavoritesAction = (data) => {
     return {
@@ -30,11 +32,29 @@ export const getJobsActionAsync = (query) => {
                     type: GET_JOBS,
                     payload: fetchedJobs,
                 })
+                dispatch({
+                    type: GET_JOBS_LOADING,
+                    payload: false,
+                })
             } else {
-                alert("Error fetching results");
+                dispatch({
+                    type: GET_JOBS_LOADING,
+                    payload: false,
+                })
+                dispatch({
+                    type: GET_JOBS_ERROR,
+                    payload: true,
+                })
             }
         } catch (error) {
-            console.log(error);
+            dispatch({
+                type: GET_JOBS_LOADING,
+                payload: false,
+            })
+            dispatch({
+                type: GET_JOBS_ERROR,
+                payload: true,
+            })
         }
     }
 }

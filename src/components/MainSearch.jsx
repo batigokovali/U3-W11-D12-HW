@@ -3,13 +3,15 @@ import { Container, Row, Col, Form } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux'
 import { getJobsActionAsync } from "../redux/actions";
+import { Spinner } from 'react-bootstrap'
 import Job from "./Job";
 
 const MainSearch = () => {
   const [query, setQuery] = useState("");
   const dispatch = useDispatch()
   const jobsFromTheReduxStore = useSelector((state) => state.jobs.stock.data)
-  console.log(jobsFromTheReduxStore)
+  const applicationSpinner = useSelector((state) => state.jobs.isLoading)
+  console.log(applicationSpinner)
 
   const handleChange = (e) => {
     setQuery(e.target.value);
@@ -44,10 +46,11 @@ const MainSearch = () => {
           </Form>
         </Col>
         <Col xs={12} className="mx-auto mb-5">
+          {applicationSpinner && <Spinner animation="border" variant="success" />}
           {jobsFromTheReduxStore ? (
             jobsFromTheReduxStore.map((jobData, i) => (
               <Job key={jobData._id} i={i} data={jobData} />))
-          ) : (<h1>Loading...</h1>)}
+          ) : (<h1>You haven't searched anything!</h1>)}
         </Col>
       </Row>
     </Container>

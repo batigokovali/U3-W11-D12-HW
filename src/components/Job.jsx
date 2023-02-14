@@ -4,16 +4,20 @@ import { useSelector, useDispatch } from "react-redux";
 import { removeFromFavoritesAction, REMOVE_FROM_FAVORITES, addToFavoritesAction, ADD_TO_FAVORITES } from '../redux/actions'
 import { BookmarkHeartFill } from "react-bootstrap-icons"
 import { BsFillBookmarkPlusFill, BsBookmarkDashFill } from "react-icons/bs"
+import { Spinner } from 'react-bootstrap'
 
 const Job = ({ data, i }) => {
   const dispatch = useDispatch();
   let favorites = useSelector((state) => state.favorites.content);
+  const applicationSpinner = useSelector((state) => state.jobs.isLoading)
 
   return (
+
     <Row
       className="mx-0 mt-3 p-3 d-flex align-items-center jobs"
       style={{ border: "1px solid #00000033", borderRadius: 4 }}
     >
+      {applicationSpinner && <Spinner animation="border" variant="success" />}
       <Col xs={3}>
         <Link to={`/${data.company_name}`}>{data.company_name}</Link>
       </Col>

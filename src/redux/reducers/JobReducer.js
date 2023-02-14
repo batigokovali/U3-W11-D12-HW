@@ -2,7 +2,7 @@ import { GET_JOBS, GET_JOBS_ERROR, GET_JOBS_LOADING } from "../actions";
 
 const initialState = {
     stock: [],
-    isLoading: true,
+    isLoading: false,
     isError: false,
 }
 

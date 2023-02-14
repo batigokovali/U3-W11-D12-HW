@@ -38,15 +38,20 @@ const MainSearch = () => {
             <Form.Control type="search" value={query} onChange={handleChange} placeholder="type and press Enter" />
           </Form>
         </Col>
-        <Col xs={12} className="mx-auto mb-5">
-          {applicationSpinner && <Spinner animation="border" variant="success" />}
-          {jobsFromTheReduxStore ? (
-            jobsFromTheReduxStore.map((jobData, i) => (
-              <Job key={jobData._id} i={i} data={jobData} />))
-          ) : (<h1>You haven't searched anything!</h1>)}
-        </Col>
+        {applicationSpinner ? (
+          <Col xs={12} className="d-flex justify-content-center mt-5">
+            <Spinner animation="border" variant="success" />
+          </Col>
+        ) : (
+          <>
+            <Col xs={12} className="mx-auto mb-5">
+              {jobsFromTheReduxStore ? (jobsFromTheReduxStore.map((jobData, i) => (<Job key={jobData._id} i={i} data={jobData} />)))
+                : (<h1 className="text-center mt-5">You haven't searched anything!</h1>)}
+            </Col>
+          </>
+        )}
       </Row>
-    </Container>
+    </Container >
   );
 };
 

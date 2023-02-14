@@ -20,11 +20,16 @@ export const removeFromFavoritesAction = (i) => {
 
 export const getJobsActionAsync = (query) => {
     return async (dispatch, getState) => {
+
         const baseEndpoint =
             "https://strive-benchmark.herokuapp.com/api/jobs?search=";
         try {
             let resp = await fetch(baseEndpoint + query + "&limit=20");
             if (resp.ok) {
+                dispatch({
+                    type: GET_JOBS_LOADING,
+                    payload: true,
+                })
                 let fetchedJobs = await resp.json();
                 dispatch({
                     type: GET_JOBS,

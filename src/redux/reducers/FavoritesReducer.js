@@ -3,7 +3,7 @@ import { REMOVE_FROM_FAVORITES } from "../actions";
 
 const initialState = {
   content: [],
-  isLoading: true,
+  isLoading: false,
   isError: false,
 };
 
